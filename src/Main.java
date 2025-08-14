@@ -1,57 +1,48 @@
 import main.java.com.ToDoList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ToDoList todo = new ToDoList();
-        todo.addTask("Make bed", "Straighten sheets, fold comforter, place pillows");
-        todo.addTask("Clean bathroom", "Scrub toilet, sinks, shower, wipe mirror");
-        System.out.println("Testing addTask");
-        todo.displayAllTasks();
+        ToDoList todoList = new ToDoList();
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Testing markTaskCompleted");
-        todo.markTaskCompleted(1);
-        todo.displayAllTasks();
-        todo.displayCompletedTasks();
+        System.out.println("To-Do List App");
 
-        System.out.println("Testing markTaskIncomplete");
-        todo.markTaskIncomplete(1);
-        todo.displayAllTasks();
+        while (true) {
+            System.out.println("\n1. Add task");
+            System.out.println("2. View tasks");
+            System.out.println("3. Mark complete");
+            System.out.println("4. Delete task");
+            System.out.println("5. Exit");
+            System.out.print("Choose: ");
 
-        System.out.println("Testing editTask");
-        todo.editTask(2, "Clean both bathrooms", "Clean each part of both bathrooms");
-        todo.displayAllTasks();
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
 
-        System.out.println("Testing getTask");
-        System.out.println(todo.getTask(2));
-        System.out.println(todo.getTask(3));
+            if (choice == 1) {
+                System.out.print("Title: ");
+                String title = scanner.nextLine();
+                System.out.print("Description: ");
+                String description = scanner.nextLine();
+                todoList.addTask(title, description);
+                System.out.println("Added!");
+            } else if (choice == 2) {
+                todoList.displayAllTasks();
+            } else if (choice == 3) {
+                System.out.print("Task ID: ");
+                int id = scanner.nextInt();
+                todoList.markTaskCompleted(id);
+                System.out.println("Marked complete!");
+            } else if (choice == 4) {
+                System.out.print("Task ID: ");
+                int id = scanner.nextInt();
+                todoList.removeTask(id);
+                System.out.println("Deleted!");
+            } else if (choice == 5) {
+                break;
+            }
+        }
 
-        System.out.println("Testing displayPendingTasks");
-        todo.markTaskCompleted(1);
-        todo.displayPendingTasks();
-        todo.displayAllTasks();
-
-        System.out.println("Testing counts");
-        System.out.println(todo.getTotalTasks());
-        System.out.println(todo.getCompletedTasksCount());
-        System.out.println(todo.getPendingTasksCount());
-
-        System.out.println("Testing removeTask");
-        todo.removeTask(2);
-        todo.displayAllTasks();
-
-        System.out.println("Testing clearAllTasks");
-        todo.clearAllTasks();
-        todo.displayAllTasks();
-
-        System.out.println("Testing edge cases");
-        todo.displayAllTasks();
-        todo.displayCompletedTasks();
-        todo.displayPendingTasks();
-
-        todo.markTaskCompleted(3);
-
-        todo.clearAllTasks();
-        todo.addTask("Take out trash", "Throw all trash in garbage");
-        System.out.println(todo.getTask(1));
+        scanner.close();
     }
 }
