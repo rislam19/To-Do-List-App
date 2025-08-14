@@ -1,5 +1,6 @@
 package main.java.com;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -140,12 +141,15 @@ public class ToDoList {
     }
 
     public void clearCompletedTasks() {
+        Iterator<Task> taskIterator = tasks.iterator();
+
         if (tasks.isEmpty()) {
             System.out.println("No tasks");
         }
-        for (Task task : tasks) {
+        while (taskIterator.hasNext()) {
+            Task task = taskIterator.next();
             if (task.isCompleted()) {
-                tasks.remove(task);
+                taskIterator.remove();
             }
         }
     }
