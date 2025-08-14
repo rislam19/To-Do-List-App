@@ -18,9 +18,13 @@ public class Task {
         this.description = description;
         this.isCompleted = false;
         this.createdAt = LocalDateTime.now();
-        this.dueDate = null;
+        this.dueDate = null
     }
 
+    /**
+     *
+     * @return the id of the current task
+     */
     public int getId() { // Getter for ID
         return id;
     }
