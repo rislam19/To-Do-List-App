@@ -1,6 +1,8 @@
-package main.java.com;
+package test.java.com;
 
-public class ToDoApp {
+import main.java.com.ToDoList;
+
+public class TaskTest {
     public static void main(String[] args) {
         ToDoList todo = new ToDoList();
         todo.addTask("Make bed", "Straighten sheets, fold comforter, place pillows");

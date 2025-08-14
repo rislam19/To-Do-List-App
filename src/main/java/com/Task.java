@@ -18,7 +18,7 @@ public class Task {
         this.description = description;
         this.isCompleted = false;
         this.createdAt = LocalDateTime.now();
-        this.dueDate = null
+        this.dueDate = null;
     }
 
     /**
